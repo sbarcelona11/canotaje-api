@@ -57,4 +57,26 @@ const register = async (req, res) => {
   }
 };
 
-export { login, register };
+const profile = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findOne({
+      where: { id }
+    }, { exclude: ['password']});
+
+    if (!user) {
+      return res.status(404).send({ message: "User not found" });
+    }
+    return res.status(200).send({
+      message: "User profile",
+      data: user
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).send({
+      message: "Could not perform this operation, try again later.",
+    });
+  }
+};
+
+export { login, register, profile };
