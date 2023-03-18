@@ -188,7 +188,19 @@ const searchPlace = async (req, res) => {
 
 const searchPlaceMultiple = async (req, res) => {
   const { name, description, location, waterType } = req.query;
-  const filters = {};
+  let filters = {};
+
+  if(name && description && location && waterType) {
+    filters = {
+      [Op.or]: [
+        { name: { [Op.like]: `%${name}%` }},
+        { description: { [Op.like]: `%${description}%` }},
+        { location: { [Op.like]: `%${location}%` }},
+        { waterType: { [Op.like]: `%${waterType}%` }},
+      ]
+    }
+  }
+
   if (name) {
     filters.name = { [Op.like]: `%${name}%` };;
   }
@@ -196,7 +208,7 @@ const searchPlaceMultiple = async (req, res) => {
     filters.description = { [Op.like]: `%${description}%` };
   }
   if (location) {
-    filters.location = { [Op.like]: `%${city}%` };
+    filters.location = { [Op.like]: `%${location}%` };
   }
   if (waterType) {
     filters.waterType = { [Op.like]: `%${waterType}%` };

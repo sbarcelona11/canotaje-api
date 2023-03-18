@@ -18,6 +18,16 @@ Una ves que la aplicacion este corriendo, podremos consumir la informacion de lo
 La documentacion para este API Rest, esta contenida en archivo ```Canotaje API postman_collection.json``` el cual tienen que importar dentro de Postman.
 Cada endpoint tiene un ejemplo de uso dentro.
 
+### AWS
+```pm2 start npm --name "ctc" -- start```  
+```pm2 stop```  
+```pm2 logs```  
+```pm2 status```
+
+
+
+
+
 ### Contacto
 * [Sebastian Barcelona](https://www.linkedin.com/in/sebastian-barcelona-01565297/)
 * [Instituto CTC](https://ctc.edu.uy/sede/colonia/)
